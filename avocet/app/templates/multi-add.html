@@ -1,0 +1,23 @@
+<div class="oa-multi-add form-group<% if (error) { %> has-error<% } %>">
+  <label for="input-multi-add-<%= instanceNumber %>" class="col-sm-2 control-label"><%= title %></label>
+  <div class="col-sm-10">
+    <input id="input-multi-add-<%= instanceNumber %>" name="<%= name %>" class="form-control" type="text" placeholder="<%= placeholder %>" />
+    <button class="btn btn-success js-btn-add" type="button">Add</button>
+    <% if (error) { %>
+      <label for="input-multi-add" class="help-block"><%= error %></label>
+    <% } %>
+
+    <% if (items.length) { %>
+      <ul>
+        <% for (index in items) { %>
+          <li>
+            <span><%= items[index] %></span>
+            <button class="btn btn-xs btn-link js-btn-remove" data-index="<%= index %>"><span class="glyphicon glyphicon-remove"></span></button>
+          </li>
+        <% } %>
+      </ul>
+    <% } else { %>
+      <p class="help-block">No funders have been added yet.</p>
+    <% } %>
+  </div>
+</div>

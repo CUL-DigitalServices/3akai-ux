@@ -1,0 +1,10 @@
+{
+  "name": "avocet",
+  "private": "true",
+  "dependencies": {
+    "bootstrap": "latest",
+    "jquery": "latest",
+    "requirejs": "latest",
+    "requirejs-text": "latest"
+  }
+}
