@@ -43,6 +43,7 @@ define([
         'oae.api.i18n',
         'oae.api.l10n',
         'oae.api.profile',
+        'oae.api.publication',
         'oae.api.push',
         'oae.api.user',
         'oae.api.util',

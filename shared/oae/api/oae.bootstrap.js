@@ -75,6 +75,7 @@ requirejs.config({
         'oae.api.i18n': 'oae/api/oae.api.i18n',
         'oae.api.l10n': 'oae/api/oae.api.l10n',
         'oae.api.profile': 'oae/api/oae.api.profile',
+        'oae.api.publication': 'oae/api/oae.api.publication',
         'oae.api.push': 'oae/api/oae.api.push',
         'oae.api.user': 'oae/api/oae.api.user',
         'oae.api.util': 'oae/api/oae.api.util',

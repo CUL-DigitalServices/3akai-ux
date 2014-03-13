@@ -38,7 +38,7 @@ require.config({
         'jquery.validate': '/shared/vendor/js/jquery-plugins/jquery.validate',
 
         // Bootstrap
-        'bootstrap': '/avocet/components/bootstrap/dist/js/bootstrap',
+        'bootstrap': '/avocet/vendor/bootstrap/js/bootstrap',
         'bootstrap.clickover': '/shared/vendor/js/bootstrap-plugins/bootstrapx.clickover',
         'bootstrap.notify': '/shared/vendor/js/bootstrap-plugins/bootstrap.notify',
         'bootstrap.focus': '/shared/oae/js/bootstrap-plugins/bootstrap.focus',
@@ -47,7 +47,7 @@ require.config({
         // Other dependencies
         'globalize': '/shared/vendor/js/l10n/globalize',
         'sockjs': '/shared/vendor/js/sockjs',
-        'text': '/avocet/components/requirejs-text/text',
+        'text': '/shared/vendor/js/requirejs/require.text',
         'trimpath': '/shared/vendor/js/trimpath',
         'underscore': '/shared/vendor/js/underscore',
 
@@ -63,6 +63,7 @@ require.config({
         'oae.api.i18n': '/shared/oae/api/oae.api.i18n',
         'oae.api.l10n': '/shared/oae/api/oae.api.l10n',
         'oae.api.profile': '/shared/oae/api/oae.api.profile',
+        'oae.api.publication': '/shared/oae/api/oae.api.publication',
         'oae.api.push': '/shared/oae/api/oae.api.push',
         'oae.api.user': '/shared/oae/api/oae.api.user',
         'oae.api.util': '/shared/oae/api/oae.api.util',
@@ -70,32 +71,10 @@ require.config({
         'oae.core': '/shared/oae/api/oae.core',
 
         // OA (avocet)
-        'oa.fileupload': '/avocet/js/fileupload',
         'oa.details-form': '/avocet/js/details-form',
-        'oa.logout': '/avocet/js/logout',
         'oa.multi-add': '/avocet/js/multi-add'
     },
     'shim': {
-        'jquery.autosuggest': ['jquery'],
-        'jquery.browse-focus': ['jquery'],
-        'jquery.clip': ['jquery'],
-        'jquery.dnd-upload': ['jquery'],
-        'jquery.encoder': ['jquery'],
-        'jquery.fileSize': ['jquery'],
-        'jquery.fileupload': ['jquery', 'jquery-ui'],
-        'jquery.form': ['jquery'],
-        'jquery.iframe-transport': ['jquery'],
-        'jquery.infinitescroll': ['jquery'],
-        'jquery.jeditable-focus': ['jquery'],
-        'jquery.list-options': ['jquery'],
-        'jquery.parseurl': ['jquery'],
-        'jquery.properties-parser': ['jquery'],
-        'jquery.serializeObject': ['jquery'],
-        'jquery.timeago': ['jquery'],
-        'jquery-ui': ['jquery'],
-        'jquery.update-picture': ['jquery'],
-        'jquery.validate': ['jquery'],
-
         'bootstrap': ['jquery'],
         'bootstrap.clickover': ['bootstrap'],
         'bootstrap.notify': ['bootstrap'],
@@ -111,9 +90,7 @@ define([
     'use strict';
 
     var widgets = {
-        'fileupload': 'oa.fileupload',
-        'details-form': 'oa.details-form',
-        'logout': 'oa.logout'
+        'details-form': 'oa.details-form'
     };
 
     $(function() {

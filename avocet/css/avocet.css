@@ -21,26 +21,26 @@ body {
   background: #181818;
   margin-bottom: 30px;
   padding: 9px 0;
+}
 
-  .oa-main-title {
-    padding: 0 200px;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-align: center;
-    font-size: 1.3em;
-    font-weight: normal;
-    margin-top: 7px;
+.oa-header .oa-main-title {
+  padding: 0 200px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: normal;
+  margin-top: 7px;
+}
 
-    a {
-      color: #C0C0C0;
-    }
-  }
+.oa-header .oa-main-title a {
+  color: #C0C0C0;
+}
 
-  .container {
-    position: relative;
-  }
+.oa-header .container {
+  position: relative;
 }
 
 .oa-btn-login {
@@ -67,4 +67,17 @@ body {
 footer {
   padding: 40px;
   text-align: center;
+}
+
+.oa-details-form .oa-panel-body ~ .oa-panel-body {
+  border-top: 1px solid #DDD;
+}
+
+.oa-details-form .oa-details-form-file-heading {
+  margin: 0;
+}
+
+.oa-multi-add input {
+  display: inline;
+  width: auto;
 }
