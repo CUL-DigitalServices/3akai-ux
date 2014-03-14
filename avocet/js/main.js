@@ -67,6 +67,7 @@ require.config({
         'oae.api.i18n': '/shared/oae/api/oae.api.i18n',
         'oae.api.l10n': '/shared/oae/api/oae.api.l10n',
         'oae.api.profile': '/shared/oae/api/oae.api.profile',
+        'oae.api.publication': '/shared/oae/api/oae.api.publication',
         'oae.api.push': '/shared/oae/api/oae.api.push',
         'oae.api.user': '/shared/oae/api/oae.api.user',
         'oae.api.util': '/shared/oae/api/oae.api.util',
