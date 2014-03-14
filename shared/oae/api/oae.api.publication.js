@@ -59,7 +59,7 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
         ];
 
         // Send the file w/ form data
-        $fileUploadElement.fileupload('send', {
+        $fileUploadField.fileupload('send', {
             'files': [file],
             'formData': data,
             'success': function(data) {
