@@ -42,6 +42,7 @@ requirejs.config({
         'jquery.serializeObject': 'vendor/js/jquery-plugins/jquery.serializeObject',
         'jquery.spectrum': 'vendor/js/jquery-plugins/jquery.spectrum',
         'jquery.timeago': 'vendor/js/jquery-plugins/jquery.timeago',
+        'jquery.typeahead': 'vendor/js/jquery-plugins/jquery.typeahead',
         'jquery.validate': 'vendor/js/jquery-plugins/jquery.validate',
         'jquery-ui': 'vendor/js/jquery-ui/jquery-ui.custom',
         'lazyload': 'vendor/js/lazyload',
