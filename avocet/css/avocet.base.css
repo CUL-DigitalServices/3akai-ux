@@ -23,6 +23,44 @@ body {
     display: inherit;
 }
 
+.oa-home-jumbotron {
+    background: #FFF;
+    padding: 0;
+}
+
+.oa-home-banner {
+    background: url("/avocet/images/home-banner.jpg") black top center;
+    background-size: cover;
+    padding: 145px 0;
+    text-align: center;
+}
+
+.oa-home-banner .oa-heading {
+    color: #EEE;
+    margin: 0 auto 20px auto;
+    max-width: 780px;
+    text-shadow: 0px 1px 2px #2C2C2C;
+}
+
 .oa-btn-lg {
     padding: 10px 16px;
+}
+
+.oa-home-section {
+    padding: 70px 0;
+    text-align: center;
+}
+
+.oa-home-section:nth-child(even) {
+    background: #F5F5F5;
+    border-bottom: 1px solid #E9E9E9;
+}
+
+.oa-content-container {
+    margin: 0 auto;
+    max-width: 720px;
+}
+
+.oa-panel-heading {
+    padding: 7px 15px;
 }
