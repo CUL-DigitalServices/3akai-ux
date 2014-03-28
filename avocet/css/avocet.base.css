@@ -46,6 +46,10 @@ body {
     padding: 10px 16px;
 }
 
+.oa-inline-btn-link {
+    padding: 0;
+}
+
 .oa-home-section {
     padding: 70px 0;
     text-align: center;
