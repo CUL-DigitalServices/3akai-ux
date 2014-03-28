@@ -49,7 +49,7 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
      * @param  {String[]}        funders                  An Array of names of funders who funded the publication
      * @param  {String}          [otherFunders]           The name(s) of the funder(s) when Other is specified in funders
      * @param  {String}          contactEmail             The email of the person who should be contacted regarding the submission of this publication
-     * @param  {String}          copyrightStrategy        One of the copyright strategy constants defined in the oae-publications Hilary module
+     * @param  {Boolean}         useCambridgeAddendum     Whether the submitter will use the Cambridge Authors' Addendum
      * @param  {String}          comments                 Free text containing comments or questions on the publication submission
      * @param  {Element|String}  $fileUploadField         jQuery element or selector for that jQuery element representing the file upload form field that has been used to initialise jQuery.fileupload
      * @param  {Object}          file                     jQuery.fileUpload object that was returned when selecting the file that needed to be uploaded
@@ -57,7 +57,7 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
      * @param  {Object}          [callback.err]           Error object containing error code and error message
      * @param  {Publication}     [callback.publication]   Publication object representing the created publication
      */
-    var createPublication = exports.createPublication = function(displayName, correspondingAuthor, journalName, funders, otherFunders, contactEmail, copyrightStrategy, comments, $fileUploadField, file, callback) {
+    var createPublication = exports.createPublication = function(displayName, correspondingAuthor, journalName, funders, otherFunders, contactEmail, useCambridgeAddendum, comments, $fileUploadField, file, callback) {
         // Set a default callback function in case no callback function has been provided
         callback = callback || function() {};
 
@@ -80,7 +80,7 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
             {'name': 'funders', 'value': funders},
             {'name': 'otherFunders', 'value': otherFunders},
             {'name': 'contactEmail', 'value': contactEmail},
-            {'name': 'copyrightStrategy', 'value': copyrightStrategy},
+            {'name': 'useCambridgeAddendum', 'value': useCambridgeAddendum},
             {'name': 'comments', 'value': comments},
 
             // Auto-generated values. These are required by the publications API
