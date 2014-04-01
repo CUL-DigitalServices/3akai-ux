@@ -46,6 +46,10 @@ body {
     padding: 10px 16px;
 }
 
+.oa-btn-link {
+    font: inherit;
+}
+
 .oa-inline-btn-link {
     padding: 0;
 }
