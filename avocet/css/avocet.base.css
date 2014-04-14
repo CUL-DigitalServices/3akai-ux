@@ -69,6 +69,14 @@ body {
     max-width: 720px;
 }
 
+.oa-content-container img {
+    padding-bottom: 30px;
+}
+
 .oa-panel-heading {
     padding: 7px 15px;
+}
+
+.oa-icon-normal {
+    font-size: 1em;
 }
