@@ -14,6 +14,6 @@
  */
 
 /* Import the base OAE styles */
-@import url('/shared/oae/css/oae.core.css');
+@import url('../../shared/oae/css/oae.core.css');
 /* Import the base avocet styles */
-@import url('/avocet/css/avocet.base.css');
+@import url('avocet.base.css');
