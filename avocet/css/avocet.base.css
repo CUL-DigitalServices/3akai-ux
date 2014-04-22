@@ -13,7 +13,12 @@
  * permissions and limitations under the License.
  */
 
+html {
+    height: 100%;
+}
+
 body {
+    height: 100%;
     padding-left: 0;
     padding-right: 0;
 }
@@ -21,6 +26,11 @@ body {
 /* TODO: Remove this once the bootstrap3 list items PR has been merged */
 .oae-listitem > div:not(.oae-thumbnail) {
     display: inherit;
+}
+
+.oa-main-container {
+    min-height: 100%;
+    position: relative;
 }
 
 .oa-home-jumbotron {

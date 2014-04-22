@@ -15,43 +15,44 @@
 
     </head>
     <body>
+        <div class="oa-main-container">
+            <!-- HEADER -->
+            <div data-widget="avocetheader"><!-- --></div>
 
-        <!-- HEADER -->
-        <div data-widget="avocetheader"><!-- --></div>
+            <!-- BREADCRUMB -->
+            <div data-widget="breadcrumb" data-breadcrumb='[
+                {
+                    "href": "/",
+                    "title": "Home"
+                },
+                {
+                    "href": "/me",
+                    "title": "Me"
+                },
+                {
+                    "title": "Publication"
+                }
+            ]'></div>
 
-        <!-- BREADCRUMB -->
-        <div data-widget="breadcrumb" data-breadcrumb='[
-            {
-                "href": "/",
-                "title": "Home"
-            },
-            {
-                "href": "/me",
-                "title": "Me"
-            },
-            {
-                "title": "Publication"
-            }
-        ]'></div>
+            <!-- BODY -->
+            <div class="container">
+                <div id="publication-metadata-container"><!-- --></div>
+                <div id="publication-preview-container"><!-- --></div>
+            </div>
 
-        <!-- BODY -->
-        <div class="container">
-            <div id="publication-metadata-container"><!-- --></div>
-            <div id="publication-preview-container"><!-- --></div>
+            <div id="publication-metadata-template"><!--
+                <h1>${publication.displayName|encodeForHTML}</h1>
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label for="publication-share">Share:</label>
+                        <input type="text" id="publication-share" class="form-control" value="${window.location.href}" readonly/>
+                    </div>
+                </form>
+            --></div>
+
+            <!-- FOOTER -->
+            <div data-widget="avocetfooter"><!-- --></div>
         </div>
-
-        <div id="publication-metadata-template"><!--
-            <h1>${publication.displayName|encodeForHTML}</h1>
-            <form class="form-inline" role="form">
-                <div class="form-group">
-                    <label for="publication-share">Share:</label>
-                    <input type="text" id="publication-share" class="form-control" value="${window.location.href}" readonly/>
-                </div>
-            </form>
-        --></div>
-
-        <!-- FOOTER -->
-        <div data-widget="avocetfooter"><!-- --></div>
 
         <!-- JAVASCRIPT -->
         <script data-main="/shared/oae/api/oae.bootstrap.js" data-loadmodule="/avocet/js/publication.js" src="/shared/vendor/js/requirejs/require-jquery.js"></script>
