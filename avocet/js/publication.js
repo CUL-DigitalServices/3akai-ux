@@ -13,62 +13,105 @@
  * permissions and limitations under the License.
  */
 
+define(['jquery', 'oae.core'], function($, oae) {
 
-define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
-
-    // Get the publication id from the URL. The expected URL is `/publication/<tenantId>/<publicationId>`.
-    // The publication id will then be `p:<tenantId>/<publicationId>`
-    // e.g. publication/cam/xkVkSpFJo
+    // Get the publication id from the URL. The expected URL is `/publications/<tenantId>/<publicationId>`.
+    // The publication id will then be `p:<tenantId>:<publicationId>`
+    // e.g. p:avocet:g1Z-sJMW0n
     var publicationId = 'p:' + $.url().segment(2) + ':' + $.url().segment(3);
 
     // Variable used to cache the requested content profile
     var publicationProfile = null;
 
     /**
-     * Get the publication's basic profile and set up the screen. If the publication
-     * can't be found or is private to the current user, the appropriate
-     * error page will be shown
+     * Gets the publication based on the publicationId and initialises the page by
+     * prefilling the form and rendering the file and submission info panels.
      */
-    var getPublicationProfile = function() {
+    var setUpSubmissionProfile = function() {
         oae.api.publication.getPublication(publicationId, function(err, publication) {
             // Cache the publication profile data
             publicationProfile = publication;
             // Set the browser title
             oae.api.util.setBrowserTitle(publicationProfile.displayName);
-            // Show the publication preview
-            setUpPublicationPreview();
-            // Show the publication metadata
-            setUpPublicationMetaData();
+            // Render the publication info
+            renderPublicationInfo();
+            // Render the file info
+            renderFileInfo();
+            // Initialise the form
+            initForm();
             // We can now unhide the page
             oae.api.util.showPage();
         });
     };
 
     /**
-     * Render the publication preview.
+     * Render the publication info template
      */
-    var setUpPublicationPreview = function() {
-        // Load document viewer when a PDF or Office document needs to be displayed
-        var linkedContent = publicationProfile.linkedContent;
-        if (linkedContent.previews && linkedContent.previews.pageCount) {
-            oae.api.widget.insertWidget('documentpreview', null, $('#publication-preview-container'), null, linkedContent);
-        } else {
-            oae.api.widget.insertWidget('filepreview', null, $('#publication-preview-container'), null, linkedContent);
-        }
+    var renderPublicationInfo = function() {
+        var receivedDate = new Date(publicationProfile.date);
+        oae.api.util.template().render($('#oa-publicationinfo-template'), {
+            'receivedDate': oae.api.l10n.transformDate(receivedDate),
+            'referenceNumber': publicationProfile.ticket.externalId
+        }, $('#oa-publicationinfo-container'));
     };
 
     /**
-     * Render the publication metadata.
+     * Render the file info template
      */
-    var setUpPublicationMetaData = function() {
-        oae.api.util.template().render($('#publication-metadata-template'), {'publication': publicationProfile}, $('#publication-metadata-container'));
+    var renderFileInfo = function() {
+        oae.api.util.template().render($('#oa-fileinfo-template'), {
+            'fileName': publicationProfile.linkedContent.filename,
+            'fileSize': $.fn.fileSize(publicationProfile.linkedContent.size),
+        }, $('#oa-fileinfo-container'));
+    };
 
-        // Highlight the share URL text when clicking on its input
-        $("#publication-share").on("click", function() {
-            $(this).select();
+    /**
+     * Map a publication to a data structure which can be passed to the publicationform widget.
+     *
+     * @param  {Object}  publication  A publication returned from the API
+     * @return {Object}               Reorganized publication data
+     */
+    var publicationDataToFormData = function(publication) {
+        // Get the funders from the publication object exluding any custom ones (using format 'other:funderName').
+        var funders = _.filter(publication.funders, function(funder) {
+            return !/^other:/g.test(funder);
+        });
+        // Get the custom funders from the publication object
+        var otherFunders = _.difference(publication.funders, funders);
+        var otherFundersString = _.map(otherFunders, function(otherFunder) {
+            // Remove the 'other:' part from the string
+            return otherFunder.substr(6);
+        }).join(', ');
+
+        return {
+            'fields': {
+                'author': publication.authors.join(', '),
+                'comment': publication.comments,
+                'department': publication.department,
+                'email': publication.contactEmail,
+                'journal': publication.journalName,
+                'other-funders': otherFundersString,
+                'title': publication.displayName
+            },
+            'checkboxes': {
+                // Add the 'other' checkbox to the funders array if custom other funders are present
+                'funders': otherFunders.length ? funders.concat(['other']) : funders,
+                'terms': true,
+                'use-cambridge-addendum': publication.useCambridgeAddendum !== 'false'
+            }
+        };
+    };
+
+    /**
+     * Initialise the form
+     */
+    var initForm = function() {
+        // Fetch and insert the publicationform widget
+        oae.api.widget.insertWidget('publicationform', null, $('#oa-publicationform-container'), null, {
+            'prefill': publicationDataToFormData(publicationProfile),
+            'disabled': true
         });
     };
 
-    getPublicationProfile();
-
+    setUpSubmissionProfile();
 });

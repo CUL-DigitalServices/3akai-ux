@@ -46,8 +46,7 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
      * @param  {String}          displayName              Display title for the created publication
      * @param  {String}          correspondingAuthor      The name of the corresponding author of the publication
      * @param  {String}          journalName              The name of the journal the publication is published in
-     * @param  {String[]}        funders                  An Array of names of funders who funded the publication
-     * @param  {String}          [otherFunders]           The name(s) of the funder(s) when Other is specified in funders
+     * @param  {String[]}        funders                  An Array of names of funders who funded the publication, custom funder names should be using the 'other:<funderName>' format
      * @param  {String}          contactEmail             The email of the person who should be contacted regarding the submission of this publication
      * @param  {Boolean}         useCambridgeAddendum     Whether the submitter will use the Cambridge Authors' Addendum
      * @param  {String}          comments                 Free text containing comments or questions on the publication submission
@@ -57,7 +56,7 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
      * @param  {Object}          [callback.err]           Error object containing error code and error message
      * @param  {Publication}     [callback.publication]   Publication object representing the created publication
      */
-    var createPublication = exports.createPublication = function(displayName, correspondingAuthor, journalName, funders, otherFunders, contactEmail, useCambridgeAddendum, comments, $fileUploadField, file, callback) {
+    var createPublication = exports.createPublication = function(displayName, correspondingAuthor, department, journalName, funders, contactEmail, useCambridgeAddendum, comments, $fileUploadField, file, callback) {
         // Set a default callback function in case no callback function has been provided
         callback = callback || function() {};
 
@@ -67,18 +66,13 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
             throw new Error('No file provided');
         }
 
-        if (otherFunders && !( funders === "other" || _.contains(funders, "other"))) {
-            throw new Error('otherFunders was provided without "other" being specified as a funder');
-        }
-
         // jQuery.fileupload requires sending the other form data as a .serializeArray object
         // http://api.jquery.com/serializeArray/
         var data = [
             {'name': 'displayName', 'value': displayName},
             {'name': 'authors', 'value': correspondingAuthor},
+            {'name': 'department', 'value': department},
             {'name': 'journalName', 'value': journalName},
-            {'name': 'funders', 'value': funders},
-            {'name': 'otherFunders', 'value': otherFunders},
             {'name': 'contactEmail', 'value': contactEmail},
             {'name': 'useCambridgeAddendum', 'value': useCambridgeAddendum},
             {'name': 'comments', 'value': comments},
@@ -88,6 +82,14 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
             {'name': 'date', 'value': new Date().getTime()},
             {'name': 'publicationType', 'value': 'other'}
         ];
+
+        // Add the funders to the data array
+        _.each(funders, function(funder) {
+            data.push({
+                'name': 'funders',
+                'value': funder
+            });
+        });
 
         $fileUploadField.fileupload('send', {
             'files': [file],

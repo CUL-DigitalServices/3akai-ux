@@ -10,9 +10,6 @@
 
         <!-- CORE CSS -->
         <link rel="stylesheet" href="/avocet/css/avocet.css">
-        <!-- PAGE CSS -->
-        <link rel="stylesheet" href="/avocet/css/publication.css">
-
     </head>
     <body>
         <div class="oa-main-container">
@@ -36,19 +33,20 @@
 
             <!-- BODY -->
             <div class="container">
-                <div id="publication-metadata-container"><!-- --></div>
-                <div id="publication-preview-container"><!-- --></div>
-            </div>
-
-            <div id="publication-metadata-template"><!--
-                <h1>${publication.displayName|encodeForHTML}</h1>
-                <form class="form-inline" role="form">
-                    <div class="form-group">
-                        <label for="publication-share">Share:</label>
-                        <input type="text" id="publication-share" class="form-control" value="${window.location.href}" readonly/>
+                <div id="oa-publicationinfo-container" class="alert alert-warning"><!-- --></div>
+                <div id="oa-publicationinfo-template"><!--
+                    <p>This submission was received on ${receivedDate}</p>
+                    <p>The reference number is <strong>${referenceNumber}</strong></p>
+                    <p>You should get contacted within one working day from the submission date</p>
+                --></div>
+                <div id="oa-fileinfo-container"><!-- --></div>
+                <div id="oa-fileinfo-template"><!--
+                    <div class="well">
+                        <h3 class="oa-no-margin"><i class="icon-file"></i> ${fileName|encodeForHTML} <small>${fileSize}</small></h3>
                     </div>
-                </form>
-            --></div>
+                --></div>
+                <div id="oa-publicationform-container"><!-- --></div>
+            </div>
 
             <!-- FOOTER -->
             <div data-widget="avocetfooter"><!-- --></div>
