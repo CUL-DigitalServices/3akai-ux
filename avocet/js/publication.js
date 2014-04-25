@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-define(['jquery', 'oae.core'], function($, oae) {
+define(['jquery', 'oae.core', 'globalize'], function($, oae) {
 
     // Get the publication id from the URL. The expected URL is `/publications/<tenantId>/<publicationId>`.
     // The publication id will then be `p:<tenantId>:<publicationId>`
@@ -82,9 +82,16 @@ define(['jquery', 'oae.core'], function($, oae) {
             // Remove the 'other:' part from the string
             return otherFunder.substr(6);
         }).join(', ');
+        // Default the acceptance date to an empty string
+        var acceptanceDateString = '';
+        if (publication.acceptanceDate !== null) {
+            // If an acceptance date is set, convert it to DD/MM/YYYY format
+            var acceptanceDateString = Globalize.format(new Date(publication.acceptanceDate), 'd', 'en-GB');
+        }
 
         return {
             'fields': {
+                'acceptanceDate': acceptanceDateString,
                 'author': publication.authors.join(', '),
                 'comment': publication.comments,
                 'department': publication.department,

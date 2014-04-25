@@ -25,6 +25,7 @@ requirejs.config({
         // Vendor paths
         'bootstrap': 'vendor/js/bootstrap',
         'bootstrap.clickover': 'vendor/js/bootstrap-plugins/bootstrapx.clickover.oae-edited',
+        'bootstrap.datepicker': 'vendor/js/bootstrap-plugins/bootstrap.datepicker',
         'bootstrap.notify': 'vendor/js/bootstrap-plugins/bootstrap.notify.oae-edited',
         'globalize': 'vendor/js/l10n/globalize',
         'jquery.autosize': 'vendor/js/jquery-plugins/jquery.autosize',
@@ -91,6 +92,9 @@ requirejs.config({
     'priority': ['jquery', 'underscore'],
     'shim': {
         'bootstrap.clickover': {
+            'deps': ['bootstrap']
+        },
+        'bootstrap.datepicker': {
             'deps': ['bootstrap']
         }
     },
