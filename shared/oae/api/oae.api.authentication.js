@@ -75,6 +75,22 @@ define(['exports', 'jquery', 'oae.api.config'], function(exports, $, configAPI) 
     };
 
     /**
+     * Log in using the first found enabled authentication strategy.
+     */
+    var loginFirstEnabledStrategy = exports.loginFirstEnabledStrategy = function() {
+        var loginUrl = _.pluck(getEnabledStrategies(), 'url')[0];
+
+        if (!loginUrl) {
+            throw new Error('No authentication strategies have been enabled');
+        }
+
+        // Set up and submit a form which posts to the strategy url
+        var $form = $('<form method="post"></form>').attr('action', loginUrl);
+        $('<input type="hidden" name="redirectUrl" />').val(_getLoginRedirectURL()).appendTo($form);
+        $form.submit();
+    };
+
+    /**
      * Log in as an internal user using the local authentication strategy
      *
      * @param  {String}         username              Username for the user logging in
@@ -200,6 +216,28 @@ define(['exports', 'jquery', 'oae.api.config'], function(exports, $, configAPI) 
                 callback({'code': jqXHR.status, 'msg': jqXHR.responseText});
             }
         });
+    };
+
+    /**
+     * Get the URL to which the user should be redirected after signing in successfully. When a specific
+     * login redirect target has been encoded in the URL, this target will always be used as the redirect.
+     * When no explicit target is present, the current page will be reloaded unless the user is currently
+     * on the landing page. In that case, the user will be redirected to his personal landing page.
+     *
+     * @api private
+     */
+    var _getLoginRedirectURL = function() {
+        var currentLocation = window.location.pathname;
+        // If a `url` parameter is available in the URL, use this as the redirect URL
+        if ($.url().param('url')) {
+            return $.url().param('url');
+        // When on the landing page, use the me page as the redirect URL
+        } else if (window.location.pathname === '' || window.location.pathname === '/') {
+            return '/me';
+        // On all other pages, redirect back to the current page
+        } else {
+            return currentLocation;
+        }
     };
 
 });
