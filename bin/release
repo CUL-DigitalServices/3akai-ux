@@ -59,7 +59,7 @@ if (argv.p) {
 }
 
 // Load and validate the package.json
-var packageJson = CoreUtil.loadPackageJson(packageJsonPath, '3akai-ux', 4);
+var packageJson = CoreUtil.loadPackageJson(packageJsonPath, 'avocet-ui', 4);
 
 // Ensure our target version is a valid jump from where we are
 ReleaseUtil.validateTargetVersion(packageJson, argv.v, remoteName, 5);
@@ -90,4 +90,4 @@ if (argv.p || argv.u) {
     CoreUtil.exec(packageCmd, 'Error distributing the release', 9, true);
 }
 
-CoreUtil.logSuccess('Successfully released 3akai-ux '.text + argv.v.white + ' to the remote repository '.text + remoteName.white);
+CoreUtil.logSuccess('Successfully released avocet-ui '.text + argv.v.white + ' to the remote repository '.text + remoteName.white);

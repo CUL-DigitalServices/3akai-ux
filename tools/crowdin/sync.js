@@ -22,7 +22,7 @@ var argv = require('optimist')
 
     .demand('r')
     .alias('r', 'rootDir')
-    .describe('r', 'Absolute path to the 3akai-ux root directory')
+    .describe('r', 'Absolute path to the avocet-ui root directory')
     .argv;
 
 var _ = require('underscore');
@@ -35,7 +35,7 @@ var util = require('util');
 // Extract the API key from the provided command line parameter
 // @see http://crowdin.net/project/apereo-oae/settings
 var apiKey = argv.apiKey;
-// Extract the 3akai-ux root directory
+// Extract the avocet-ui root directory
 var rootDir = argv.rootDir;
 var crowdinDir = rootDir + '/tools/crowdin';
 

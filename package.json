@@ -1,6 +1,6 @@
 {
-  "name": "3akai-ux",
-  "description": "Open Academic Environment (OAE) Front-end",
+  "name": "avocet-ui",
+  "description": "Cambridge Open-Access Front-end",
   "version": "6.1.1",
   "homepage": "http://www.oaeproject.org",
   "author": {
@@ -9,10 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/oaeproject/3akai-ux.git"
+    "url": "git://github.com/CUL-DigitalServices/avocet-ui.git"
   },
   "bugs": {
-    "url": "https://github.com/oaeproject/3akai-ux/issues"
+    "url": "https://github.com/CUL-DigitalServices/avocet-ui/issues"
   },
   "licenses": [
     {

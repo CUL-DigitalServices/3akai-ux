@@ -1,17 +1,17 @@
 # Open Academic Environment (OAE Project)
 
-3akai-ux is the front-end for the Open Academic Environment project.
+Avocet-ui is the front-end for Cambridge Open-Access.
 
 ## Build status
-[![Build Status](https://travis-ci.org/oaeproject/3akai-ux.png?branch=master)](https://travis-ci.org/oaeproject/3akai-ux)
+[![Build Status](https://travis-ci.org/CUL-DigitalServices/avocet-ui.svg?branch=master)](https://travis-ci.org/CUL-DigitalServices/avocet-ui)
 
 ## Installing OAE
 
-Documentation on how to install and configure OAE can be found in the [back-end repository](https://github.com/oaeproject/Hilary).
+Documentation on how to install and configure OAE can be found in the [back-end repository](https://github.com/CUL-DigitalServices/avocet-hilary).
 
 ## Off-line Development
 
-By default 3akai-ux uses the Open Sans font family available from Google's Web Font CDN. When developing locally without a live internet connection, that CDN will be inaccessible. To ensure maximum visual fidelity, those fonts can be installed as system fonts on the local machine. The entire collection can be downloaded from [Google](http://www.google.com/fonts#UsePlace:use/Collection:Open+Sans).
+By default avocet-ui uses the Open Sans font family available from Google's Web Font CDN. When developing locally without a live internet connection, that CDN will be inaccessible. To ensure maximum visual fidelity, those fonts can be installed as system fonts on the local machine. The entire collection can be downloaded from [Google](http://www.google.com/fonts#UsePlace:use/Collection:Open+Sans).
 
 ## Widget development
 
@@ -29,7 +29,7 @@ In order to run the front-end test suite, [CasperJS](http://casperjs.org/), whic
 
 ### Install NPM dependencies
 
-NPM is the package manager that downloads all the Node.js dependencies on which the 3akai-ux test suite relies. To tell NPM to download all the dependencies, run this command in your 3akai-ux directory:
+NPM is the package manager that downloads all the Node.js dependencies on which the avocet-ui test suite relies. To tell NPM to download all the dependencies, run this command in your 3akai-ux directory:
 
 ```
 npm install -d
