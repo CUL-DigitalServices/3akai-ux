@@ -18,7 +18,7 @@ var argv = require('optimist')
     .describe('h', 'Show this help information')
 
     .alias('v', 'ui-version')
-    .describe('v', 'The version of the UI that we are packaging. If not specified, it will be derived from the 3akai-ux version in package.json and git describe')
+    .describe('v', 'The version of the UI that we are packaging. If not specified, it will be derived from the avocet-ui version in package.json and git describe')
 
     .alias('s', 'skip-tests')
     .describe('s', 'Skip the unit tests in the packaging process')
@@ -54,7 +54,7 @@ var srcDir = 'target';
 PackageUtil.validatePackage(srcDir, 3);
 
 // Load and validate the package.json
-var packageJson = CoreUtil.loadPackageJson(packageJsonPath, '3akai-ux', 4);
+var packageJson = CoreUtil.loadPackageJson(packageJsonPath, 'avocet-ui', 4);
 
 if (!argv.s) {
     CoreUtil.runUnitTests(6);
@@ -62,7 +62,7 @@ if (!argv.s) {
     CoreUtil.logWarn('Skipping unit tests because of -s parameter');
 }
 
-// Find the 3akai-ux version. If not specified explicitly in the command with a -v parameter, it will be derived
+// Find the avocet-ui version. If not specified explicitly in the command with a -v parameter, it will be derived
 // using a combination of the package.json version and the closest matching tag using git describe
 var uiVersion = argv.v || CoreUtil.gitVersion(packageJson.version, 7);
 
@@ -72,11 +72,11 @@ CoreUtil.logSuccess('Resolved UI version to be '.text + uiVersion.white);
 CoreUtil.exec('node_modules/.bin/grunt', 'Error during the grunt optimization stage', 8, true);
 CoreUtil.logSuccess('Successfully optimized the UI files into the '.text + 'target'.white + ' directory'.text);
 
-// Save the system info into the 3akai-ux target directory. This will tell us at least what version we are
+// Save the system info into the avocet-ui target directory. This will tell us at least what version we are
 PackageUtil.saveBuildInfo(srcDir, uiVersion, systemInfo, 9);
 
 // Package the source directory into a tarball
-var packageFilename = util.format('3akai-ux-%s', uiVersion);
+var packageFilename = util.format('avocet-ui-%s', uiVersion);
 var packageResult = PackageUtil.packageRelease(srcDir, '.', packageFilename, 10);
 var checksumResult = PackageUtil.checksumPackage(packageResult.packagePath, 11);
 

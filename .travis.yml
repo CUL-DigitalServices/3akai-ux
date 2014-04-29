@@ -8,8 +8,8 @@ branches:
 
 env:
   global:
-    - secure: Amuv0dlhrdLdzoFN6WlOKETpYY5FdwtqroaFuVh1Gt6l01cPgOwDxR775xN1SQhv/3FlaxuwS8Zm+cMK/Q8QSPRgdwUiRDV0BcD603aOj9HxT06/yNmjSj6bClIR9DTfc2NhwdG5cNMur54Dvrtk6ZZet2GYJoEsfFtE0v9Gq9M=
-    - secure: DHt20YWVkb6wOdVcsBJ/zW2IyZVdVLBCiMlAhqdIREkZ5IpV5v9BV4/RzykiOQilDBPhqZp1Dd5XGDaNXqXNvnibO+3NxvY3VQX0o/uFs2Ig1AGzf1iKf3GyfObLtN5r8I58todT3jjO1vNwHQM3xHWwFa9qAeOclM/tyKdkJks=
+    - secure: ckul1NeOfQi13LxMvppoXzc/O08YEf2HqDbyE3dl2mgnjQVfB8ASRKSyvp6jZhKYEPX+WUwfdpHid8fGq3ESwTAUT41QF+HBUr7xdz6772m7Qm0nMJ94FaT7iL+2sR2O6WmqpWWktUSOkN4omI7xOv9b1MVHYiYPct965SM3SdI=
+    - secure: gJlW/YbFeC7HAiFxH+M4Ia8BYP0n4PvLRT2bG5YgfFsRfF7yNkppCIt/cSxrl5SUhsT6UnArLVejP1nw6U6Pxu4KoOKdnWLnFjU2/qtU0IpEZDgex4u1wthxe37qd/fkNRq5U243c4N9UuY8YLJm0rDVYhxVsP1QQSymWThhis4=
 
 before_install:
   # Turn off unneeded services to free some memory
@@ -25,7 +25,7 @@ before_install:
 
   # Hilary dependencies
   - sudo apt-get install -qq graphicsmagick
-  - sudo apt-get install -y -o Dpkg::Options::=--force-confnew cassandra=1.2.15 dsc12
+  - sudo apt-get install -y -o Dpkg::Options::=--force-confnew cassandra=1.2.16 dsc12
   - sudo sed -i 's/-Xss180k/-Xss256k/g' /etc/cassandra/cassandra-env.sh
   - sudo sh -c "echo 'JVM_OPTS=\"\${JVM_OPTS} -Djava.net.preferIPv4Stack=false\"' >> /etc/cassandra/cassandra-env.sh"
   - sudo service cassandra stop
@@ -42,7 +42,7 @@ before_install:
   - node src/node/server.js &
   - cd ..
 
-  # 3akai-ux dependencies
+  # avocet-ui dependencies
   - wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-i686.tar.bz2
   - tar xjf phantomjs-1.9.2-linux-i686.tar.bz2
   - sudo ln -fs pwd/phantomjs-1.9.2-linux-i686/bin/phantomjs /usr/local/bin/phantomjs
@@ -51,23 +51,23 @@ before_install:
   - git checkout 1.0.3
   - sudo ln -sf `pwd`/bin/casperjs /usr/local/bin/casperjs
 
-  # Configure 3akai-ux / nginx
-  - cd ../3akai-ux
+  # Configure avocet-ui / nginx
+  - cd ../avocet-ui
   - npm install
-  - "echo '{\"NGINX_USER\": \"root\",\"NGINX_GROUP\": \"root\",\"NGINX_HOSTNAME\": \"admin.oae.com\",\"UX_HOME\": \"/home/travis/build/oaeproject/3akai-ux\",\"LOCAL_FILE_STORAGE_DIRECTORY\": \"/home/travis/build/oaeproject/files\"}' > nginx/nginx.json"
+  - "echo '{\"NGINX_USER\": \"root\",\"NGINX_GROUP\": \"root\",\"NGINX_HOSTNAME\": \"admin.oae.com\",\"UX_HOME\": \"/home/travis/build/CUL-DigitalServices/avocet-ui\",\"LOCAL_FILE_STORAGE_DIRECTORY\": \"/home/travis/build/CUL-DigitalServices/files\"}' > nginx/nginx.json"
   - grunt configNginx
   - sudo cp ./target/optimized/nginx/nginx.conf /etc/nginx/nginx.conf
   - sudo mkdir /usr/share/nginx/logs
   - sudo service nginx start
 
   # Install Hilary and create our test tenant
-  - git clone  --branch master --depth=1 git://github.com/oaeproject/Hilary.git ../Hilary
-  - cd ../Hilary
+  - git clone  --branch master --depth=1 git://github.com/CUL-DigitalServices/avocet-hilary.git ../avocet-hilary
+  - cd ../avocet-hilary
   - npm install --production
   - node app.js &
 
   # Wait for Hilary to have started up
-  - cd ../3akai-ux
+  - cd ../avocet-ui
   - ./tools/travis/checkHilaryStart.sh
 
   # Create a test tenant
@@ -92,6 +92,4 @@ after_success:
   - etc/scripts/travis-upload.sh
 
 notifications:
-  email:
-    - oae-team@collab.sakaiproject.org
-  irc: "irc.freenode.org#oae"
+  irc: "irc.freenode.org#ucam-ds-oa"

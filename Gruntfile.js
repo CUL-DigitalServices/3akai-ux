@@ -250,10 +250,6 @@ module.exports = function(grunt) {
         },
         'git-describe': {
             'oae': {}
-        },
-        'casperjs': {
-            options: {},
-            files: ['tests/casperjs/suites/*.js']
         }
     });
 
@@ -264,7 +260,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-git-describe');
     grunt.loadNpmTasks('grunt-ver');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
-    grunt.loadNpmTasks('grunt-casperjs');
 
     // Task to write the version to a file
     grunt.registerTask('writeVersion', function() {
@@ -470,8 +465,8 @@ module.exports = function(grunt) {
         grunt.task.run('contrib-qunit');
     });
 
-    // Run the CasperJS and QUnit tests
-    grunt.registerTask('test', ['casperjs', 'qunit']);
+    // Run the QUnit tests
+    grunt.registerTask('test', ['qunit']);
 
     // Default task for production build
     grunt.registerTask('default', ['clean', 'copy', 'git-describe', 'requirejs', 'touchBootstrap', 'hashFiles', 'writeVersion', 'configNginx']);
