@@ -25,6 +25,7 @@ requirejs.config({
         // Vendor paths
         'bootstrap': 'vendor/js/bootstrap',
         'bootstrap.clickover': 'vendor/js/bootstrap-plugins/bootstrapx.clickover.oae-edited',
+        'bootstrap.datepicker': 'vendor/js/bootstrap-plugins/bootstrap.datepicker',
         'bootstrap.notify': 'vendor/js/bootstrap-plugins/bootstrap.notify.oae-edited',
         'globalize': 'vendor/js/l10n/globalize',
         'jquery.autosize': 'vendor/js/jquery-plugins/jquery.autosize',
@@ -43,6 +44,7 @@ requirejs.config({
         'jquery.serializeObject': 'vendor/js/jquery-plugins/jquery.serializeObject',
         'jquery.spectrum': 'vendor/js/jquery-plugins/jquery.spectrum',
         'jquery.timeago': 'vendor/js/jquery-plugins/jquery.timeago',
+        'jquery.typeahead': 'vendor/js/jquery-plugins/jquery.typeahead',
         'jquery.validate': 'vendor/js/jquery-plugins/jquery.validate',
         'jquery-ui': 'vendor/js/jquery-ui/jquery-ui.custom',
         'lazyload': 'vendor/js/lazyload',
@@ -78,6 +80,7 @@ requirejs.config({
         'oae.api.i18n': 'oae/api/oae.api.i18n',
         'oae.api.l10n': 'oae/api/oae.api.l10n',
         'oae.api.profile': 'oae/api/oae.api.profile',
+        'oae.api.publication': 'oae/api/oae.api.publication',
         'oae.api.push': 'oae/api/oae.api.push',
         'oae.api.user': 'oae/api/oae.api.user',
         'oae.api.util': 'oae/api/oae.api.util',
@@ -89,6 +92,9 @@ requirejs.config({
     'priority': ['jquery', 'underscore'],
     'shim': {
         'bootstrap.clickover': {
+            'deps': ['bootstrap']
+        },
+        'bootstrap.datepicker': {
             'deps': ['bootstrap']
         }
     },

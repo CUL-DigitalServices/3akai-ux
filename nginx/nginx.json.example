@@ -1,0 +1,9 @@
+{
+    "NGINX_USER": "_www",
+    "NGINX_GROUP": "_www",
+    "NGINX_HOSTNAME": "admin.avocet.com",
+    "UX_HOME": "/some/where/avocet-ui",
+    "LOCAL_FILE_STORAGE_DIRECTORY": "/some/where/files",
+    "LOG_ERROR": "/opt/local/etc/nginx/error.log",
+    "LOCK_FILE": "/opt/local/etc/nginx/nginx.pid"
+}

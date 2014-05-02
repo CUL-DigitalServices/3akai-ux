@@ -1,0 +1,91 @@
+/*!
+ * Copyright 2014 Digital Services, University of Cambridge Licensed
+ * under the Educational Community License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
+ *
+ *     http://opensource.org/licenses/ECL-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.oa-main-container {
+    min-height: 100%;
+    position: relative;
+}
+
+.oa-home-jumbotron {
+    background: #FFF;
+    padding: 0;
+}
+
+.oa-home-banner {
+    background: url("/avocet/images/home-banner.jpg") black top center;
+    background-size: cover;
+    padding: 145px 0;
+    text-align: center;
+}
+
+.oa-home-banner .oa-heading {
+    color: #EEE;
+    margin: 0 auto 20px auto;
+    max-width: 780px;
+    text-shadow: 0px 1px 2px #2C2C2C;
+}
+
+.oa-btn-lg {
+    padding: 10px 16px;
+}
+
+.oa-no-margin {
+    margin: 0;
+}
+
+.oa-btn-link {
+    font: inherit;
+}
+
+.oa-inline-btn-link {
+    padding: 0;
+}
+
+.oa-home-section {
+    padding: 70px 0;
+    text-align: center;
+}
+
+.oa-home-section:nth-child(even) {
+    background: #F5F5F5;
+    border-bottom: 1px solid #E9E9E9;
+}
+
+.oa-content-container {
+    margin: 0 auto;
+    max-width: 720px;
+}
+
+.oa-content-container img {
+    padding-bottom: 30px;
+}
+
+.oa-panel-heading {
+    padding: 7px 15px;
+}
+
+.oa-icon-normal {
+    font-size: 1em;
+}
