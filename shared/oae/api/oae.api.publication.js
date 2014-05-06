@@ -73,7 +73,6 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
             {'name': 'authors', 'value': correspondingAuthor},
             {'name': 'department', 'value': department},
             {'name': 'journalName', 'value': journalName},
-            {'name': 'acceptanceDate', 'value': acceptanceDate},
             {'name': 'contactEmail', 'value': contactEmail},
             {'name': 'useCambridgeAddendum', 'value': useCambridgeAddendum},
             {'name': 'comments', 'value': comments},
@@ -83,6 +82,11 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
             {'name': 'date', 'value': new Date().getTime()},
             {'name': 'publicationType', 'value': 'other'}
         ];
+
+        // Add the acceptance date to the data array if one is provided.
+        if (acceptanceDate) {
+            data.push({'name': 'acceptanceDate', 'value': acceptanceDate});
+        }
 
         // Add the funders to the data array
         _.each(funders, function(funder) {
