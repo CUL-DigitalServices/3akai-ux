@@ -86,11 +86,16 @@ define(['jquery', 'oae.core', 'globalize'], function($, oae) {
             // Remove the 'other:' part from the string
             return otherFunder.substr(6);
         }).join(', ');
+
         // Default the acceptance date to an empty string
         var acceptanceDateString = '';
+        // If an acceptance date is set, convert it to DD/MM/YYYY format
         if (publication.acceptanceDate !== null) {
-            // If an acceptance date is set, convert it to DD/MM/YYYY format
-            var acceptanceDateString = Globalize.format(new Date(publication.acceptanceDate), 'd', 'en-GB');
+            // acceptanceDate is a millisecond timestamp representing the date in UTC. We need obtain the local time equivalent of this time in order to have Globalize.format() format it (as you can't tell Globalize to format the UTC representation)
+            var dateUTC = new Date(publication.acceptanceDate);
+            var dateLocal = new Date(dateUTC.getUTCFullYear(), dateUTC.getUTCMonth(), dateUTC.getUTCDate());
+
+            var acceptanceDateString = Globalize.format(dateLocal, 'd', 'en-GB');
         }
 
         return {
