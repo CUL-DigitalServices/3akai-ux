@@ -147,6 +147,7 @@
 .oa-site-header a,
 .oa-site-header a:focus,
 .oa-site-header a:hover,
+.oa-site-header .oa-nav-item,
 .oa-site-header button,
 .oa-site-header button:active,
 .oa-site-header button:focus,
@@ -155,7 +156,7 @@
     color: #FFF;
 }
 
-.oa-site-header .oa-nav a {
+.oa-site-header .oa-nav .oa-nav-item {
     border-bottom-color: transparent;
 }
 
@@ -163,20 +164,26 @@
     background: #F7F5F2;
 }
 
-.oa-site-header .oa-subnav a {
+.oa-site-header .oa-nav:not(.depth-1) .oa-nav-item,
+.oa-site-header .oa-subnav .oa-nav-item {
     color: #323232;
 }
 
-.oa-site-header .oa-nav a:hover,
-.oa-site-header .oa-nav a:focus,
-.oa-site-header .oa-nav a.active {
+.oa-site-header .oa-nav .oa-nav-item:hover,
+.oa-site-header .oa-nav .oa-nav-item:focus,
+.oa-site-header .oa-nav .oa-nav-item.active {
     border-bottom-color: #CBCBCB;
 }
 
-.oa-site-header .oa-subnav a:hover,
-.oa-site-header .oa-subnav a.active {
+.oa-site-header .oa-nav:not(.depth-1) .oa-nav-item:hover,
+
+.oa-site-header .oa-subnav .oa-nav-item:hover,
+.oa-site-header .oa-subnav .oa-nav-item.active {
     border-bottom-color: #575A5D;
     color: #575A5D;
+}
+.oa-site-header .oa-nav-item a {
+    color: inherit;
 }
 
 /*****************
