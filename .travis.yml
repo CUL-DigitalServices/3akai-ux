@@ -22,12 +22,10 @@ before_install:
   - sudo apt-get update
 
   # Install cassandra 1.2 manually
+  - sudo service cassandra stop
   - sudo apt-get install -y -o Dpkg::Options::=--force-confnew cassandra=1.2.16
   - sudo sed -i 's/-Xss180k/-Xss256k/g' /etc/cassandra/cassandra-env.sh
   - sudo sh -c "echo 'JVM_OPTS=\"\${JVM_OPTS} -Djava.net.preferIPv4Stack=false\"' >> /etc/cassandra/cassandra-env.sh"
-  - sudo service cassandra stop
-  - sudo service cassandra start
-  - sudo service cassandra status
 
   # Install nginx
   - sudo apt-get install nginx
@@ -48,11 +46,16 @@ before_install:
   - casperjs --version
   - phantomjs --version
 
+  # Start Cassandra
+  - sudo service cassandra start
+  - sudo service cassandra status
+
   # Install Hilary
   - cd ~/build/CUL-DigitalServices
   - git clone  --branch master --depth=1 git://github.com/CUL-DigitalServices/avocet-hilary.git ./avocet-hilary
   - cd ./avocet-hilary
   - npm install --production
+  - sudo service cassandra status
   - node app.js | node_modules/.bin/bunyan -l error &
 
   # Configure avocet-ui / nginx
