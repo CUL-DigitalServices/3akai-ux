@@ -31,9 +31,6 @@ module.exports = function(grunt) {
                       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
         },
         'target': process.env['DESTDIR'] || 'target',
-        'qunit': {
-            'files': ['tests/qunit/tests/*.html']
-        },
         'lint': {
             'files': [
                 'grunt.js',
@@ -517,10 +514,13 @@ module.exports = function(grunt) {
             return grunt.fail.fatal('Please provide a link to a running OAE instance. e.g. `grunt qunit:tenant1.oae.com` or `grunt qunit --qunit-host tenant1.oae.com`');
         }
 
-        var urls = _.map(grunt.file.expand(grunt.config.get('qunit.files')), function(file) {
-            return 'http://' + host + '/' + file;
-        });
-        var config = {'options': {'urls': urls}};
+        var config = {
+            'options': {
+                'httpBase': 'http://' + host
+            },
+            'src': ['tests/qunit/tests/*.html']
+        };
+
         grunt.config.set('contrib-qunit.all', config);
         grunt.task.run('contrib-qunit');
     });

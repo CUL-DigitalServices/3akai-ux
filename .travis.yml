@@ -64,6 +64,7 @@ before_install:
 
   # Wait for Hilary to have started up to start the tests in "script" phase
   - ./tools/travis/checkHilaryStart.sh
+  - curl -I http://cam.oae.com
 
 addons:
   hosts:
