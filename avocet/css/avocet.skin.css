@@ -194,6 +194,14 @@
     color: #FFF;
 }
 
+.oa-back-bar a:hover {
+    color: #9EBFC3;
+}
+
+.oa-back-bar i {
+    vertical-align: middle;
+}
+
 /*****************
  ** Site footer **
  *****************/
