@@ -40,6 +40,7 @@ define([
         'oae.api.content',
         'oae.api.comment',
         'oae.api.discussion',
+        'oae.api.folder',
         'oae.api.follow',
         'oae.api.group',
         'oae.api.i18n',
@@ -80,6 +81,7 @@ define([
         'jquery.timeago',
         'jquery.validate',
         'jquery-ui',
+        'markdown',
         'sockjs',
         'tinycon',
         'underscore'
