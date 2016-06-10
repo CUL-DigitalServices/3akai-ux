@@ -385,8 +385,6 @@ define(['exports', 'jquery', 'underscore', 'oae.core', 'jquery.properties-parser
                 '/avocet/publications.html': null,
                 '/avocet/upload.html': null,
                 '/avocet/what-do-i-need-to-do.html': null,
-                '/avocet/what-is-changing.html': null,
-                '/avocet/what-is-open-access.html': null,
                 '/avocet/errors/accessdenied.html': null,
                 '/avocet/errors/noscript.html': null,
                 '/avocet/errors/notfound.html': null,

@@ -141,8 +141,6 @@ require(['jquery', 'oae.core', '/tests/qunit/js/util.js'], function($, oae, util
             '/avocet/publications.html',
             '/avocet/upload.html',
             '/avocet/what-do-i-need-to-do.html',
-            '/avocet/what-is-changing.html',
-            '/avocet/what-is-open-access.html',
             '/avocet/errors/accessdenied.html',
             '/avocet/errors/noscript.html',
             '/avocet/errors/notfound.html',
