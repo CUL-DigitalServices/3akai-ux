@@ -139,16 +139,6 @@ body {
     max-width: 822px;
 }
 
-@media (max-width: 1024px) {
-    .oa-feedbackify .container {
-        padding-left: 45px;
-    }
-
-    .oa-feedbackify .oa-content-container {
-        padding-left: 0;
-    }
-}
-
 /************************
  ** Highlighted panels **
  ************************/

@@ -29,8 +29,6 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config', 'jquery.
         autoSuggest().init();
         // Set up Google Analytics
         googleAnalytics();
-        // Set up Feedbackify
-        initFeedbackify();
         // Set up the favicon bubble
         favicon().init(me);
         // Load the OAE TrimPath Template macros
@@ -440,41 +438,6 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config', 'jquery.
             'init': init,
             'setBubble': setBubble
         };
-    };
-
-    /**
-     * Initialise the Feedbackify functionality
-     */
-    var initFeedbackify = function() {
-        // Fetch the feedbackify configuration values
-        var enabled = configAPI.getValue('oae-feedbackify', 'feedbackify', 'enabled');
-        var formId = configAPI.getValue('oae-feedbackify', 'feedbackify', 'formId');
-
-        var widgetEnabled = configAPI.getValue('oae-feedbackify', 'feedbackify', 'widgetEnabled');
-        var widgetColor = configAPI.getValue('oae-feedbackify', 'feedbackify', 'widgetColor');
-        var widgetPosition = configAPI.getValue('oae-feedbackify', 'feedbackify', 'widgetPosition');
-        var excludeWidgetOn = configAPI.getValue('oae-feedbackify', 'feedbackify', 'widgetExcludedOnPages');
-        var widgetBodyClass = configAPI.getValue('oae-feedbackify', 'feedbackify', 'widgetBodyClass');
-
-        if (enabled) {
-            window.fby = window.fby || [];
-            require(['//cdn.feedbackify.com/f.js']);
-
-            if (widgetEnabled && (!excludeWidgetOn || !new RegExp(excludeWidgetOn).test(window.location.pathname))) {
-                window.fby.push(['showTab', {
-                    'id': formId,
-                    'position': widgetPosition,
-                    'color': widgetColor
-                }]);
-                $('body').addClass(widgetBodyClass);
-            }
-
-            exports.feedbackify = {
-                'requestForm': function() {
-                    window.fby.push(['showForm', formId]);
-                }
-            };
-        }
     };
 
     /**

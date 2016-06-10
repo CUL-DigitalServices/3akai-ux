@@ -56,13 +56,7 @@ casper.test.begin('Prepare environment for tests', function(test) {
                     adminUtil().writeConfig(configUtil().tenantAlias, {
                         'oae-principals/recaptcha/enabled': false,
                         'oae-principals/termsAndConditions/enabled': true,
-                        'oae-principals/termsAndConditions/text/default': '![OAE](/shared/oae/img/oae-logo.png) Default terms and conditions',
-                        'oae-feedbackify/feedbackify/enabled': true,
-                        'oae-feedbackify/feedbackify/formId': '7625',
-                        'oae-feedbackify/feedbackify/widgetEnabled': true,
-                        'oae-feedbackify/feedbackify/widgetColor': '#CB4F00',
-                        'oae-feedbackify/feedbackify/widgetPosition': 'left',
-                        'oae-feedbackify/feedbackify/widgetBodyClass': 'oa-feedbackify'
+                        'oae-principals/termsAndConditions/text/default': '![OAE](/shared/oae/img/oae-logo.png) Default terms and conditions'
                     }, function() {
                         userUtil().doAdminLogOut();
                     });
