@@ -276,6 +276,15 @@ body {
     margin: 0 0 41px 0;
 }
 
+/* Symplectic pilot banner */
+
+.oa-symplectic-pilot-banner {
+    font-size: 18px;
+    background-color: #fcf8e3;
+    padding: 17px 0;
+    color: #575a5d;
+}
+
 /***********
  ** Forms **
  ***********/
