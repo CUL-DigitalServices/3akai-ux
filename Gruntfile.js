@@ -329,7 +329,7 @@ module.exports = function(grunt) {
     // as a result
     grunt.registerTask('touchBootstrap', function() {
         // Just place a comment in the file with the current timestamp
-        util.format('\n// Date Built: %d', Date.now()).toEnd(util.format('%s/optimized/shared/oae/api/oae.bootstrap.js', grunt.config('target')));
+        shell.echo(util.format('\n// Date Built: %d', Date.now())).toEnd(util.format('%s/optimized/shared/oae/api/oae.bootstrap.js', grunt.config('target')));
     });
 
     // Task to hash files
