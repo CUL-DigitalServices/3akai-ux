@@ -186,8 +186,13 @@ body {
 /* Home section */
 
 .oa-home-section {
-    padding: 44px 28px 56px 28px;
+    padding: 44px 28px 56px 0;
     text-align: center;
+}
+
+.oa-home-col:nth-child(2n) .oa-home-section {
+    padding-right: 0;
+    padding-left: 28px;
 }
 
 .oa-home-section h3 {
