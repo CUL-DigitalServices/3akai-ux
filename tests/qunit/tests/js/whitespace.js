@@ -26,7 +26,7 @@ require(['jquery', 'oae.core', '/tests/qunit/js/util.js'], function($, oae, util
     var checkWhitespace = function(bundlePath, bundle) {
         $.each(bundle, function(i18nKey, i18nValue) {
             // Check if the translation has repeated whitespace
-            var whitespaceRegex = /\s{2,}/g;
+            var whitespaceRegex = /\s{2,}/;
             if (whitespaceRegex.test(i18nValue)) {
                 ok(false, i18nKey + ' has a double whitespace in bundle ' + bundlePath);
             } else {

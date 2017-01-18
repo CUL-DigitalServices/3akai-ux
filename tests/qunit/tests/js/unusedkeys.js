@@ -44,7 +44,7 @@ require(['jquery', 'oae.core', '/tests/qunit/js/util.js'], function($, oae, util
          * @return {Boolean}               `true` if there was a match, `false` otherwise
          */
         var runTest = function(filePath, testFile, key) {
-            var regex = new RegExp(escapeRegExp('__MSG__' + key + '__', 'gm'));
+            var regex = new RegExp(escapeRegExp('__MSG__' + key + '__', 'm'));
             if (regex.test(testFile)) {
                 return true;
             }
@@ -52,49 +52,47 @@ require(['jquery', 'oae.core', '/tests/qunit/js/util.js'], function($, oae, util
         };
 
         // Loop over all main bundles
+        var mainBundleTestedKeys = [];
         $.each(testData.mainBundles, function(mainBundleKey, mainBundle) {
             test(mainBundleKey, function() {
-                if (mainBundle && _.keys(mainBundle).length) {
-                    // For each key in the main bundle, check if it's used in a widget or main HTML file
-                    $.each(mainBundle, function(key, value) {
-                        if (key) {
-                            var keyUsed = false;
+                var mainBundleKeys = _.keys(mainBundle);
+                if (mainBundle && mainBundleKeys.length) {
+                    // Only select the keys which haven't been tested yet
+                    var keysToTest = _.difference(mainBundleKeys, mainBundleTestedKeys);
+                    if (keysToTest.length) {
+                        // For each key, check if it's used in a widget or main HTML file
+                        _.each(keysToTest, function(key) {
+                            if (key) {
+                                mainBundleTestedKeys.push(key);
 
-                            // Check if key is used in the main HTML or macro files
-                            $.each(testData.mainHTML, function(mainHTMLPath, mainHTML) {
-                                keyUsed = runTest(mainHTMLPath, mainHTML, key) || keyUsed;
-                            });
+                                var toTest = [
+                                    testData.mainHTML,
+                                    testData.mainJS,
+                                    testData.apiJS,
+                                    testData.oaePlugins
+                                ];
 
-                            // Check if the key is used in the widget HTML or JavaScript files
-                            $.each(testData.widgetData, function(widgetId, widget) {
-                                keyUsed = runTest(widgetId, widget.html, key) || keyUsed;
-                                $.each(widget.js, function(widgetJSIndex, widgetJS) {
-                                    keyUsed = runTest(widgetId, widgetJS, key) || keyUsed;
+                                var keyUsed = _.some(toTest, function(testFiles) {
+                                    return _.some(testFiles, function(testFile, testFilePath) {
+                                        return runTest(testFilePath, testFile, key);
+                                    });
+                                }) || _.some(testData.widgetData, function(widget, widgetId) {
+                                    // Check the widgets if they key hasn't been found yet
+                                    return runTest(widgetId, widget.html, key) || _.some(widget.js, function(widgetJS) {
+                                        return runTest(widgetId, widgetJS, key);
+                                    });
                                 });
-                            });
 
-                            // Check if key is used in the main JS files
-                            $.each(testData.mainJS, function(mainJSPath, mainJS) {
-                                keyUsed = runTest(mainJSPath, mainJS, key) || keyUsed;
-                            });
-
-                            // Check if key is used in the API files
-                            $.each(testData.apiJS, function(apiJSPath, apiJS) {
-                                keyUsed = runTest(apiJSPath, apiJS, key) || keyUsed;
-                            });
-
-                            // Check if key is used in the OAE plugin files
-                            $.each(testData.oaePlugins, function(oaePluginPath, oaePlugin) {
-                                keyUsed = runTest(oaePluginPath, oaePlugin, key) || keyUsed;
-                            });
-
-                            if (keyUsed) {
-                                ok(true, '\'' + key + '\' in \'' + mainBundleKey + '\' is used');
-                            } else {
-                                ok(false, '\'' + key + '\' in \'' + mainBundleKey + '\' is not being used');
+                                if (keyUsed) {
+                                    ok(true, '\'' + key + '\' in \'' + mainBundleKey + '\' is used');
+                                } else {
+                                    ok(false, '\'' + key + '\' in \'' + mainBundleKey + '\' is not being used');
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        ok(true, 'Keys in \'' + mainBundleKey + '\' were already tested.');
+                    }
                 } else {
                     ok(true, 'No keys in \'' + mainBundleKey + '\'');
                 }
@@ -109,13 +107,11 @@ require(['jquery', 'oae.core', '/tests/qunit/js/util.js'], function($, oae, util
                         if (_.keys(bundle).length) {
                             $.each(bundle, function(i18nKey, i18nValue) {
                                 if (i18nValue) {
-                                    var htmlUsed = runTest(widgetId, widget.html, i18nKey);
-                                    var jsUsed = false;
-
-                                    $.each(widget.js, function(widgetJSIndex, widgetJS) {
-                                        jsUsed = jsUsed || runTest(widgetId, widgetJS, i18nKey);
+                                    var keyUsed = runTest(widgetId, widget.html, i18nKey) || _.some(widget.js, function(widgetJS) {
+                                        return runTest(widgetId, widgetJS, i18nKey);
                                     });
-                                    if (htmlUsed || jsUsed) {
+
+                                    if (keyUsed) {
                                         ok(true, i18nKey + ' in \'' + widgetId + ' - ' + bundleKey + '\' is used');
                                     } else {
                                         ok(false, i18nKey + ' in \'' + widgetId + ' - ' + bundleKey + '\' is not being used');
