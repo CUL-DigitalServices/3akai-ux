@@ -37,6 +37,7 @@ requirejs.config({
         'jquery.history': 'vendor/js/jquery-plugins/jquery.history',
         'jquery.iframe-transport': 'vendor/js/jquery-plugins/jquery.iframe-transport',
         'jquery.jcrop': 'vendor/js/jquery-plugins/jcrop/jquery.Jcrop',
+        'jquery.jpulse': 'vendor/js/jquery-plugins/jquery.jpulse',
         'jquery.jeditable': 'vendor/js/jquery-plugins/jquery.jeditable.oae-edited',
         'jquery.bootstrap-show-hide': 'vendor/js/jquery-plugins/jquery.bootstrap-show-hide',
         'jquery.oembed': 'vendor/js/jquery-plugins/jquery.oembed',
