@@ -16,6 +16,8 @@ node_modules/*
 !node_modules/oae-core
 !node_modules/oae-avocet
 
+stats/*
+
 target/
 
 tools/crowdin/*.jar
